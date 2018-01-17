@@ -1,6 +1,6 @@
 #include "declare.h"
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 unsigned int N_ofelements;
 unsigned int operations;
@@ -10,12 +10,12 @@ unsigned int IDf = 0;
 double *arr;
 
 N_ofelements = atoi( argv[2] );
-printf("Exit code success only means that a function was exit successfully,\n"\
+printf("\n\nExit code success only means that a function was exit successfully,\n"\
        "but doesn't mean that the function did its work properly");
 ID0 = allocation(&arr, N_ofelements);
 printf("\n\nAllocation succesfull. Exit code %d.", ID0);
 ID1 = File_manage(argv, arr, N_ofelements);
-printf("\nFILE manage succesfull. Exit code %d.", ID1);
+printf("\n\nFILE manage succesfull. Exit code %d.", ID1);
 IDf = merge_sort(arr, N_ofelements);
 printf("\nMerge sort succesfull. Exit code %d.", IDf);
 
@@ -39,21 +39,29 @@ unsigned int File_manage(char **src, double *dst, unsigned int N_ofelements)
 unsigned int i;
 FILE *fp;
 fp = fopen(src[1], "r");
+
 if(fp == NULL)
   {  
   printf("\n\nError opening sorting file\n"\
   "in 'File_manage()'.\n\n");
   exit(0);
   }
+
+printf("%d", N_ofelements);
 for(i = 0; i < N_ofelements; i++)
   {
+  printf("\n\n%d\n\n", i);
   fscanf(fp, "%lf\n", &dst[i] );
+  printf("\n\n%lf\n\n", dst[i]);
   }
+
+printf("TEST1");
 fclose(fp);
-return(1);
+printf("TEST2");
+return(0);
 }
 
-unsigned int copy_arr(double *src, double *dst, unsigned int N_ofelements)
+unsigned int copy_arr(double *src, double **dst, unsigned int N_ofelements)
 {
 unsigned int i;
 for(i = 0; i < N_ofelements; i++)
@@ -69,7 +77,7 @@ unsigned int ID2 = 0;
 unsigned int ID4 = 0;
 double *buffer;
 
-ID2 = copy_arr(arr, buffer, N_ofelements);
+ID2 = copy_arr(arr, &buffer, N_ofelements);
 printf("\n\nCopy of arr succesfull. Exit code %d.", ID2);
 ID4 = split_merge_sorted(buffer, arr, 0, N_ofelements-1);
 printf("\n\nSplit merge sorted success. Exit code %d.", ID4);
