@@ -7,17 +7,22 @@ unsigned int operations;
 unsigned int ID0 = 0;
 unsigned int ID1 = 0;
 unsigned int IDf = 0;
+unsigned int IDff = 0;
 double *arr;
 
 N_ofelements = atoi( argv[2] );
+
 printf("\n\nExit code success only means that a function was exit successfully,\n"\
        "but doesn't mean that the function did its work properly");
 ID0 = allocate(&arr, N_ofelements);
 printf("\n\nAllocation succesfull. Exit code %d.", ID0);
-ID1 = File_manage(argv, arr, N_ofelements);
+ID1 = src_File_manage(argv, arr, N_ofelements);
 printf("\n\nFILE manage succesfull. Exit code %d.", ID1);
 IDf = merge_sort(arr, N_ofelements);
 printf("\nMerge sort succesfull. Exit code %d.", IDf);
+printf("\nWriting sorted array in new file: 'sorted.txt'");
+IDff = dst_File_manage(arr, N_ofelements);
+printf("\nsorted array succesfully written in 'sorted.txt'\n\n");
 
 free(arr);
 return(6);
@@ -34,25 +39,46 @@ if(*array == NULL)
 return(0);
 }
 
-unsigned int File_manage(char **src, double *dst, unsigned int N_ofelements)
+unsigned int src_File_manage(char **src, double *dst, unsigned int N_ofelements)
 {
 unsigned int i;
-FILE *fp;
-fp = fopen(src[1], "r");
+FILE *sc;
+sc = fopen(src[1], "r");
 
-if(fp == NULL)
+if(sc == NULL)
   {  
   printf("\n\nError opening sorting file\n"\
-  "in 'File_manage()'.\n\n");
+  "in 'src_File_manage()'.\n\n");
   exit(0);
   }
+
 for(i = 0; i < N_ofelements; i++)
   {
-  fscanf(fp, "%lf\n", &dst[i] );
+  fscanf(sc, "%lf\n", &dst[i] );
   }
 
-fclose(fp);
+fclose(sc);
 return(1);
+}
+
+unsigned int dst_File_manage(double *dst, unsigned int N_ofelements)
+{
+unsigned int i;
+FILE *dt;
+dt = fopen("sorted.txt", "w+");
+
+if(dt == NULL)
+  {
+  printf("\n\nError opening or creating 'sorted.txt' file\n"\
+  "in 'dst_File_manage()'.\n\n");
+  exit(0);
+  }
+
+for(i = 0; i < N_ofelements; i++)
+  {
+  fprintf(dt, "%lf\n", dst[i]);
+  }
+return(7);
 }
 
 unsigned int copy_arr(double *src, double *dst, unsigned int N_ofelements)

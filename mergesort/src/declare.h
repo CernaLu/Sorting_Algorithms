@@ -3,7 +3,8 @@
 #include <math.h>
 
 unsigned int allocate(double **array, unsigned int N_ofelements);
-unsigned int File_manage(char **src, double *dst, unsigned int N_ofelements);
+unsigned int src_File_manage(char **src, double *dst, unsigned int N_ofelements);
+unsigned int dst_File_manage(double *dst, unsigned int N_ofelements);
 unsigned int copy_arr(double *src, double *dst, unsigned int N_ofelements);
 unsigned int merge_sort(double *arr, unsigned int N_ofelements);
 unsigned int split_merge_sorted(double *src, double *dst,\
