@@ -1,4 +1,6 @@
 Luis E. Cerna
+Universidad de Guanajuato
+Engeneering Physics Undergraduate
 Cernalue@gmail.com
 
 
@@ -15,11 +17,17 @@ i) Compiling and running:
   NOTES:
   A <FileName>.txt will be necessary for compilation
   arguments. The file must contain the sorting array
-  as a single column. Must also be known the number
-  of lines/elements in the file.
+  as a single column. Also number of lines/elements
+  in the file. <FileName> will be obtained as double
+  presition.
   --------------------------------------------------
   
-  1) Make #STILL HAVE TO WRITE THE MAKEFILE 
-  2) ./<executable> <filename> <NofLinesInFile>
+  1) Compile de Makefile:
+     Make
+  2) Execute:
+     ./../bin/mergesort <FileName.txt> <NofLinesInFile>
  
-ii) 
+ii) Details:
+
+The sorted array will be writen in a new file named
+'sorted.txt'. Look for file in the same address.

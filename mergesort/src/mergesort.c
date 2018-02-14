@@ -12,14 +12,12 @@ double *arr;
 
 N_ofelements = atoi( argv[2] );
 
-printf("\n\nExit code success only means that a function was exit successfully,\n"\
-       "but doesn't mean that the function did its work properly");
 ID0 = allocate(&arr, N_ofelements);
-printf("\n\nAllocation succesfull. Exit code %d.", ID0);
+printf("\n\nAllocation succesfull.");
 ID1 = src_File_manage(argv, arr, N_ofelements);
-printf("\n\nFILE manage succesfull. Exit code %d.", ID1);
+printf("\n\nFILE manage succesfull.");
 IDf = merge_sort(arr, N_ofelements);
-printf("\nMerge sort succesfull. Exit code %d.", IDf);
+printf("\nMerge sort succesfull.");
 printf("\nWriting sorted array in new file: 'sorted.txt'");
 IDff = dst_File_manage(arr, N_ofelements);
 printf("\nsorted array succesfully written in 'sorted.txt'\n\n");
@@ -49,7 +47,7 @@ if(sc == NULL)
   {  
   printf("\n\nError opening sorting file\n"\
   "in 'src_File_manage()'.\n\n");
-  exit(0);
+  exit(1);
   }
 
 for(i = 0; i < N_ofelements; i++)
@@ -71,7 +69,7 @@ if(dt == NULL)
   {
   printf("\n\nError opening or creating 'sorted.txt' file\n"\
   "in 'dst_File_manage()'.\n\n");
-  exit(0);
+  exit(7);
   }
 
 for(i = 0; i < N_ofelements; i++)
@@ -99,11 +97,11 @@ unsigned int ID5 = 0;
 double *buffer;
 
 ID2 = allocate(&buffer, N_ofelements);
-printf("\n\nAllocation succesfull. Exit code %d.", ID2);
+printf("\n\nAllocation succesfull.");
 ID3 = copy_arr(arr, buffer, N_ofelements);
-printf("\n\nCopy of arr succesfull. Exit code %d.", ID3);
+printf("\n\nCopy of arr succesfull.", ID3);
 ID5 = split_merge_sorted(buffer, arr, 0, N_ofelements-1);
-printf("\n\nSplit merge sorted success. Exit code %d.", ID5);
+printf("\n\nSplit merge sorted success.", ID5);
 
 free(buffer);
 return(5);
@@ -126,17 +124,15 @@ middleindex = (firstindex + lastindex) / 2;
 op += split_merge_sorted(dst, src, firstindex, middleindex);
 op += split_merge_sorted(dst, src, middleindex+1, lastindex);
 op += merge_sorted(src, dst, firstindex, middleindex, lastindex);
-printf("\nNumber of operations = %d\n", op);
-printf("\n\nMerge sorted success. Exit code %d.", ID4);
 
-return(op);
+return(6);
 }
 
 unsigned int merge_sorted(double *src, double *dst,\
                           unsigned int firstindex, unsigned int middleindex,\
                           unsigned int lastindex)
 {
-unsigned int sorted_numbers = 0;
+unsigned int ID7 = 0;
 unsigned int lo_srcindex, hi_srcindex, dstindex;
 
 lo_srcindex = firstindex;
@@ -170,7 +166,7 @@ for(dstindex = firstindex; dstindex <= lastindex; dstindex++)
     dst[dstindex] = src[hi_srcindex];
     hi_srcindex++;
     }
-  sorted_numbers++;
+  ID7++;
   }
-return(sorted_numbers++);
+return(ID7++);
 }
