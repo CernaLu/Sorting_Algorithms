@@ -1,4 +1,4 @@
-CC = gcc-6
+CC = gcc
 CFLAGS = -lm -O3 -Wall -Wextra -Wchkp -Wdouble-promotion -Wmissing-braces -Wparentheses -Wunknown-pragmas -Wunsafe-loop-optimizations -Wconversion -Wlogical-op -Wredundant-decls -fmax-errors=7 -std=c11
 
 # gcc in OS X is linked to clang !
